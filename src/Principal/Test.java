@@ -9,17 +9,9 @@ public class Test
 		Structure myStructure = new Structure();
 		Logic myLogic = new Logic(myStructure);
 
+		int num =0;
+		//myLogic.IngresoMyD(15);
 		
-		myStructure.addDiamante(1);
-		myStructure.addDiamante(3);
-		myStructure.addDiamante(4);
-		myStructure.addDiamante(9);
-
-		myStructure.addMinero(4);
-		myStructure.addMinero(9);
-		myStructure.addMinero(10);
-		myStructure.addMinero(12);
-
 		Entry<Entry<Integer, String>, Entry<Integer, String>> S[] = myLogic.minerosDeDiamanteGreedy();
 		System.out.println(solucionToString(S) + "\nEsfuerzo total: " + myLogic.esfuerzoTotal(S));
 	}
@@ -29,7 +21,7 @@ public class Test
 		String toRet = "";
 		for (int i = 0; i < S.length; i++)
 		{
-			toRet = toRet + "(" + S[i].getKey().getValue() + " ," + S[i].getValue().getValue() + "), ";
+			toRet = toRet + "("+S[i].getKey().getValue()+":" + S[i].getKey().getKey() + " ,"+S[i].getValue().getValue()+":" + + S[i].getValue().getKey() + "), ";
 		}
 		return toRet;
 	}

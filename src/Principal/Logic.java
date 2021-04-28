@@ -1,7 +1,11 @@
 package Principal;
+import TDAs.DefaultComparator;
 import TDAs.EmptyPriorityQueueException;
 import TDAs.Entrada;
 import TDAs.Entry;
+import TDAs.Heap;
+import TDAs.InvalidKeyException;
+import TDAs.PriorityQueue;
 
 import java.lang.Math;
 
@@ -62,5 +66,82 @@ public class Logic
 			res = res + Math.sqrt(Math.pow(S[i].getKey().getKey(), 2) + Math.pow(S[i].getValue().getKey(), 2));
 		
 		return res;
+	}
+	
+	public void IngresoMyD(Integer num) {
+		int numero=0;
+		for(int i=0; i<num;i++) {
+			numero=(int)(Math.random() * 25) + 1;
+			if(entontre(myStructure.getColaDiamantes(),numero)) {
+				numero=(int)(Math.random() * 25) + 1;
+				i--;
+			}
+			else
+				myStructure.addDiamante(numero);
+		}
+		for(int o=0;o<num;o++ ) {
+			numero=(int)(Math.random() * 25) + 1;
+			if(entontre(myStructure.getColaMineros(),numero)) {
+				numero=(int)(Math.random() * 25) + 1;
+				o--;
+			}
+			else
+				myStructure.addMinero(numero);
+		}
+	}
+	
+private boolean entontre(PriorityQueue<Integer, String> cola, int i) {
+		boolean encontre = false;
+		Entry<Integer,String> auxx = new Entrada(null,null);
+		PriorityQueue<Integer, String> aux=new Heap<Integer, String>(new DefaultComparator<Integer>());
+		while(!cola.isEmpty()) {
+			try {
+				auxx=cola.removeMin();
+				aux.insert(auxx.getKey(),auxx.getValue());
+			} catch (InvalidKeyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (EmptyPriorityQueueException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(auxx.getKey()==i) {
+				encontre=true;
+			}
+		}
+		while(!aux.isEmpty()) {
+			try {
+				auxx=aux.removeMin();
+				cola.insert(auxx.getKey(),auxx.getValue());
+			} catch (InvalidKeyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (EmptyPriorityQueueException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(auxx.getKey()==i) {
+				encontre=true;
+			}
+		}
+		return encontre;
+		
+	}
+
+//	public void IngresoMyD(Integer num) {
+//		for(int i=0; i<num;i++) {
+//			myStructure.addDiamante((int)(Math.random() * 4)==1 ? -1*(int)(Math.random() * 25) - 1 : (int)(Math.random() * 25) + 1);
+//			myStructure.addMinero((int)(Math.random() * 4)==1 ? -1*(int)(Math.random() * 25) - 1 : (int)(Math.random() * 25) + 1);
+//		}
+//	}
+//	
+	public static String solucionToString(Entry<Entry<Integer, String>, Entry<Integer, String>> S[]) 
+	{
+		String toRet = "";
+		for (int i = 0; i < S.length; i++)
+		{
+			toRet = toRet + "("+S[i].getKey().getValue()+":" + S[i].getKey().getKey() + " ,"+S[i].getValue().getValue()+":" + + S[i].getValue().getKey() + "), ";
+		}
+		return toRet;
 	}
 }
