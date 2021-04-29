@@ -7,6 +7,6 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
-	<classpathentry kind="lib" path="/SimpleGraph/lib/jsr-305.jar"/>
+	<classpathentry kind="lib" path="X:/WorkspaceUniversidad/Mineros y Diamantes/Mineros-y-diamantes-Greedy/jsr305-3.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
